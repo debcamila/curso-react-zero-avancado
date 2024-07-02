@@ -3,6 +3,13 @@
   margin: 14px auto;
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+}
+
 .movies-list article {
   width: 100%;
   background-color: #fff;

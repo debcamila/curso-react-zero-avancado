@@ -5,6 +5,7 @@ import Movie from "./pages/Movie";
 
 import React from "react";
 import Header from "./components/Header";
+import Error from "./pages/Error";
 
 export const RoutesApp = () => {
   return (
@@ -13,6 +14,8 @@ export const RoutesApp = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<Movie />} />
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
