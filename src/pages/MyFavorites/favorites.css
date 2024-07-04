@@ -36,3 +36,15 @@
   color: #116feb;
   margin-right: 14px;
 }
+
+.btn-delete {
+  padding: 10px;
+  background-color: brown;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: red;
+}
