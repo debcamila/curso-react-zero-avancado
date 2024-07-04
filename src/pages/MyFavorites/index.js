@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./favorites.css";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function MyFavorites() {
   const [movies, setMovies] = useState([]);
@@ -16,6 +17,7 @@ function MyFavorites() {
 
     setMovies(filterMovies);
     localStorage.setItem("@primeflix", JSON.stringify(filterMovies));
+    toast.success("Filme removido com sucesso da sua lista de favoritos!");
   }
 
   return (
@@ -33,7 +35,10 @@ function MyFavorites() {
               <span>{movie.title}</span>
               <div>
                 <Link to={`/movie/${movie.id}`}>Ver detalhes</Link>
-                <button onClick={() => deleteFavorite(movie.id)}>
+                <button
+                  className="btn-delete"
+                  onClick={() => deleteFavorite(movie.id)}
+                >
                   Excluir
                 </button>
               </div>
