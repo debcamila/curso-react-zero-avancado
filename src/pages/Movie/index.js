@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import "./movie.css";
 
 function Movie() {
   const { id } = useParams();
+  const navigation = useNavigate();
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -21,12 +22,15 @@ function Movie() {
           setMovie(response.data);
           setLoading(false);
         })
-        .catch(() => {});
+        .catch(() => {
+          navigation("/", { replace: true });
+          return;
+        });
     }
     loadMovie();
 
     return () => {};
-  }, []);
+  }, [navigation, id]);
 
   if (loading) {
     return (
@@ -50,7 +54,13 @@ function Movie() {
       <div className="btns-area">
         <button>Salvar</button>
         <button>
-          <a href="#">Trailer</a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={`https://youtube.com/results?search_query=${movie.title} Trailer`}
+          >
+            Trailer
+          </a>
         </button>
       </div>
     </div>
