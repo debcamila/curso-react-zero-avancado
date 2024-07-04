@@ -32,6 +32,23 @@ function Movie() {
     return () => {};
   }, [navigation, id]);
 
+  function saveMovie() {
+    const myList = localStorage.getItem("@primeflix");
+    let moviesFavorites = JSON.parse(myList) || [];
+    const hasMovie = moviesFavorites.some(
+      (movieFavorite) => movieFavorite.id === movie.id
+    );
+
+    if (hasMovie) {
+      alert("Esse filme já se encontra na lista de favoritos!");
+      return;
+    }
+
+    moviesFavorites.push(movie);
+    localStorage.setItem("@primeflix", JSON.stringify(moviesFavorites));
+    alert("Filme salvo com sucesso!");
+  }
+
   if (loading) {
     return (
       <div className="info-movie">
@@ -52,7 +69,7 @@ function Movie() {
       <strong>Avaliação: {movie.vote_average} /10</strong>
 
       <div className="btns-area">
-        <button>Salvar</button>
+        <button onClick={saveMovie}>Salvar</button>
         <button>
           <a
             target="_blank"
